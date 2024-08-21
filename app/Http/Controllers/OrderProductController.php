@@ -20,6 +20,7 @@ class OrderProductController extends Controller
         $cartItem = Order::where('name', $product['name'])->first();
         if ($cartItem) {
             $cartItem->quantity++;
+            $cartItem->save();
         } else {
             Order::create([
                 'name' => $product['name'],
@@ -29,6 +30,12 @@ class OrderProductController extends Controller
                 'quantity' => 1,
             ]);
         }
+        return redirect()->back();
+    }
+
+    public function clearOrder()
+    {
+        Order::truncate();
         return redirect()->back();
     }
 }

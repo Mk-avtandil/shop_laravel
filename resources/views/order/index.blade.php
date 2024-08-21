@@ -37,7 +37,8 @@
         <?php endforeach; ?>
     </table>
     <a href="/" class="btn btn-primary" type="submit">Назад</a>
-    <a href="" class="btn btn-primary" type="submit">Очистить корзину</a>
+    <a href="{{route('order.clear')}}" class="btn btn-primary" type="submit">Очистить корзину</a>
+
 </div>
 </body>
 </html>

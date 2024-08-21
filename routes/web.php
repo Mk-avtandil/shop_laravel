@@ -30,6 +30,7 @@ Route::prefix('orders')
     ->group(function () {
         Route::get('/', [OrderProductController::class, 'index'])->name('index');
         Route::post('/add/{product}', [OrderProductController::class, 'add'])->name('add');
+        Route::get('/clear', [OrderProductController::class, 'clearOrder'])->name('clear');
     });
 
 require __DIR__.'/auth.php';
