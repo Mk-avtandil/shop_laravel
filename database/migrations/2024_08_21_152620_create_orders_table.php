@@ -20,6 +20,10 @@ return new class extends Migration
             $table->integer('quantity');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
+
+            #$table->softDeletes();
+
+//            $table->foreignIdFor(\App\Models\Product::class)->constrained()->onDelete('cascade');
         });
     }
 

@@ -19,6 +19,9 @@
                 <li class="nav-item mx-2">
                     <a href="{{ route('order.index') }}" class="btn bg-light" type="submit">Корзина</a>
                 </li>
+                <li class="nav-item mx-2">
+                    <a href="{{ route('dashboard') }}" class="btn bg-light" type="submit">Dashboard</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -31,14 +34,16 @@
             <th scope="col">Название</th>
             <th scope="col">Цена</th>
             <th scope="col">Описание</th>
+            <th scope="col">Категория</th>
             <th scope="col"></th>
-            <th scope="col"></th>
+            <th></th>
         </tr>
         @foreach($products as $product)
             <tr>
-                <td><?php echo $product['name']?></td>
-                <td><?php echo $product['price']?></td>
-                <td><?php echo $product['description']?></td>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->price }}</td>
+                <td>{{ $product->description }}</td>
+                <td>{{ $product->category->name }}</td>
                 <td>
                     <form action="{{route('order.add', ['product' => $product->id])}}" method="POST">
                         @csrf
@@ -53,8 +58,8 @@
                 </td>
             </tr>
         @endforeach
-
     </table>
+    {{ $products->links('pagination::bootstrap-5') }}
 </div>
 </body>
 </html>

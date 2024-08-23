@@ -9,5 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Order extends Model
 {
     use HasFactory;
+
     protected $fillable = ['name', 'price', 'description', 'category_id', 'quantity'];
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 }
