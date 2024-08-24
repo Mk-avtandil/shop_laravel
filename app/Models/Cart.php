@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Product extends Model
+class Cart extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'price', 'description', 'category_id'];
+    protected $fillable = ['product_id', 'quantity'];
 
-    public function category() : BelongsTo
+    public function product() : BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Product::class );
     }
-
 }

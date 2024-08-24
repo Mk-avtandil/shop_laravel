@@ -13,32 +13,29 @@
         <a class="navbar-brand text-light" href="/">SHOP</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav p-2">
+                <li class="nav-item mx-2">
+                    <a href="/" class="btn bg-light" type="submit">Главная</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container">
-    <h2 class="mt-3">Корзина</h2>
-    <table class="table">
-        <tr>
-            <th scope="col">Название</th>
-            <th scope="col">Цена</th>
-            <th scope="col">Описание</th>
-            <th scope="col">Кол-во</th>
-        </tr>
-        <?php foreach ($orders as $item):?>
-        <tr>
-            <td><?php echo $item['name']?></td>
-            <td><?php echo $item['price']?></td>
-            <td><?php echo $item['description']?></td>
-            <td><?php echo $item['quantity']?></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
-    <a href="/" class="btn btn-primary" type="submit">Назад</a>
-    <a href="{{route('order.clear')}}" class="btn btn-primary" type="submit">Очистить корзину</a>
-
+<div class="container my-3">
+    <h3 class="mb-3">Добавление категории</h3>
+    <form action="{{route('category.save')}}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label>Название</label>
+            <input name="name" type="text" class="form-control">
+        </div>
+        @error('name')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+        <div class="form-group my-3">
+            <button class="btn btn-primary" type="submit">Сохранить</button>
+        </div>
+    </form>
 </div>
 </body>
 </html>

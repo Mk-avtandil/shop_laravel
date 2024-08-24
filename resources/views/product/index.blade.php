@@ -14,13 +14,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav p-2">
                 <li class="nav-item mx-2">
+                    <a href="{{ route('category.index') }}" class="btn bg-light" type="submit">Категории</a>
+                </li>
+                <li class="nav-item mx-2">
                     <a href="{{ route('product.create') }}" class="btn bg-light">Добавить новые продукты</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a href="{{ route('order.index') }}" class="btn bg-light" type="submit">Корзина</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a href="{{ route('dashboard') }}" class="btn bg-light" type="submit">Dashboard</a>
+                    <a href="{{ route('cart.index') }}" class="btn bg-light" type="submit">Корзина</a>
                 </li>
             </ul>
         </div>
@@ -33,8 +33,9 @@
         <tr>
             <th scope="col">Название</th>
             <th scope="col">Цена</th>
-            <th scope="col">Описание</th>
             <th scope="col">Категория</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
             <th scope="col"></th>
             <th></th>
         </tr>
@@ -42,10 +43,15 @@
             <tr>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->price }}</td>
-                <td>{{ $product->description }}</td>
                 <td>{{ $product->category->name }}</td>
                 <td>
-                    <form action="{{route('order.add', ['product' => $product->id])}}" method="POST">
+                    <form action="{{route('product.detail', $product->id)}}" method="GET">
+                        @csrf
+                        <button class="w-100 btn btn-info text-light" type="submit">Подробнее</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{{route('cart.add', ['product' => $product->id])}}" method="POST">
                         @csrf
                         <button class="w-100 btn btn-success" type="submit">Добавить в корзину</button>
                     </form>

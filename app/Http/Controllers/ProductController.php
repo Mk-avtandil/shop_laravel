@@ -38,4 +38,24 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->back();
     }
+
+    public function edit($id) : View
+    {
+        $product = Product::with("category")->findOrFail($id);
+        $categories = Category::all();
+        return view('product.edit', ['product' => $product, 'categories' => $categories]);
+    }
+
+    public function update($id, SaveProductRequest $request) : RedirectResponse
+    {
+        $product = Product::findOrFail($id);
+        $product->update($request->validated());
+        return redirect()->back();
+    }
+
+    public function detail($id) : View
+    {
+        $product = Product::with("category")->findOrFail($id);
+        return view('product.detail', ['product' => $product]);
+    }
 }

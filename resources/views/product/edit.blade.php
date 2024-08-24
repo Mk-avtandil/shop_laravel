@@ -22,26 +22,26 @@
 </nav>
 
 <div class="container my-3">
-    <h3 class="mb-3">Добавление продукта</h3>
-    <form action="{{route('product.save')}}" method="POST">
+    <h3 class="mb-3">Обновление продукта</h3>
+    <form action="{{route('product.update', $product->id)}}" method="POST">
         @csrf
         <div class="form-group">
             <label>Название</label>
-            <input name="name" type="text" class="form-control">
+            <input name="name" type="text" value="{{ old('name', $product->name) }}" class="form-control">
         </div>
         @error('name')
         <span class="text-danger">{{ $message }}</span>
         @enderror
         <div class="form-group">
             <label>Цена</label>
-            <input name="price" type="text" class="form-control">
+            <input name="price" type="text" value="{{ old('price', $product->price) }}" class="form-control">
         </div>
         @error('price')
         <span class="text-danger">{{ $message }}</span>
         @enderror
         <div class="form-group">
             <label>Описание</label>
-            <input name="description" type="text" class="form-control">
+            <input name="description" type="text" value="{{ old('description', $product->description) }}" class="form-control">
         </div>
         @error('description')
         <span class="text-danger">{{ $message }}</span>
@@ -50,18 +50,17 @@
             <label>Категория</label>
             <select class="custom-select form-control" name="category_id">
                 <option value="">...</option>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
             </select>
         </div>
         @error('category_id')
-            <span class="text-danger">{{ $message }}</span>
+        <span class="text-danger">{{ $message }}</span>
         @enderror
         <div class="form-group my-3">
             <button class="btn btn-primary" type="submit">Сохранить</button>
         </div>
-
     </form>
 </div>
 </body>
