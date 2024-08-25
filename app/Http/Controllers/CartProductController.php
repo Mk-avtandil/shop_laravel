@@ -12,7 +12,6 @@ class CartProductController extends Controller
 {
     public function index() : View
     {
-
         $products = Cart::with('product')->get();
         return view('cart.index', ['products' => $products]);
     }

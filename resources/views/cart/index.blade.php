@@ -27,7 +27,6 @@
         <tr>
             <th scope="col">Название</th>
             <th scope="col">Цена</th>
-            <th scope="col">Описание</th>
             <th scope="col">Категория</th>
             <th scope="col">Кол-во</th>
             <th></th>
@@ -36,7 +35,6 @@
             <tr>
                 <td>{{ $item->product->name  }}</td>
                 <td>{{ $item->product->price  }}</td>
-                <td>{{ $item->product->description  }}</td>
                 <td>{{ $item->product->category->name  }}</td>
                 <td>{{ $item->quantity }}</td>
             </tr>
