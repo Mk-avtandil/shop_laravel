@@ -33,6 +33,7 @@
         <span class="text-danger">{{ $message }}</span>
         @enderror
         <div class="form-group my-3">
+            <a href="{{ route('category.index') }}" class="btn btn-primary" type="submit">Назад</a>
             <button class="btn btn-primary" type="submit">Сохранить</button>
         </div>
     </form>

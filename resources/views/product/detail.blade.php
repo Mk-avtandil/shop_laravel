@@ -46,14 +46,26 @@
             <td><strong>Дата обновления: </strong>{{ $product->updated_at }}</td>
         </tr>
     </table>
-    <form action="{{route('product.edit', $product->id)}}" method="GET">
-        @csrf
-        <button class="w-75 my-1 btn btn-warning" type="submit">Изменить</button>
-    </form>
-    <form action="{{route('cart.add', ['product' => $product->id])}}" method="POST">
-        @csrf
-        <button class="w-75 my-1 btn btn-success" type="submit">Добавить в корзину</button>
-    </form>
+    <div class="row w-75">
+        <div class="col-4">
+            <a href="{{ route('product.index') }}" class="btn btn-primary w-100" type="submit">Назад</a>
+        </div>
+        <div class="col-4">
+            <form action="{{route('product.edit', $product->id)}}" method="GET">
+                @csrf
+                <button class="w-100 btn btn-warning" type="submit">Изменить</button>
+            </form>
+        </div>
+        <div class="col-4">
+            <form action="{{route('cart.add', ['product' => $product->id])}}" method="POST">
+                @csrf
+                <button class="w-100 btn btn-success" type="submit">Добавить в корзину</button>
+            </form>
+        </div>
+    </div>
+
+
+
 </div>
 </body>
 </html>
